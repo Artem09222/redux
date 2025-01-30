@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Chart, CategoryScale, LinearScale, LineElement, PointElement, LineController, Title, Tooltip } from 'chart.js';
-import styles from "./CurrencySale.module.css"
+import styles from "./CurrencySale.module.css";
 
 Chart.register(CategoryScale, LinearScale, LineElement, PointElement, LineController, Title, Tooltip);
 
@@ -14,7 +14,7 @@ const CurrencySale = () => {
         }
 
         const createGradient = (ctx, chartArea) => {
-            if (!chartArea) return 'rgba(255, 99, 132, 0.2)'; // Резервний колір, якщо chartArea недоступний
+            if (!chartArea) return 'rgba(255, 99, 132, 0.2)'; 
             const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
             gradient.addColorStop(0, 'rgba(30, 0, 100, 0.8)');
             gradient.addColorStop(1, 'rgba(60, 10, 150, 0.3)');
@@ -30,7 +30,7 @@ const CurrencySale = () => {
                         label: 'Курсы покупки',
                         data: [27.55, 29.00, 30.00, 28.75, 29.5],
                         borderColor: '#ff6384',
-                        backgroundColor: null, // Початково null
+                        backgroundColor: null, 
                         fill: true,
                         tension: 0.4,
                         pointBackgroundColor: '#ffffff',
@@ -40,7 +40,7 @@ const CurrencySale = () => {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: true, // Контролюється через контейнер
+                maintainAspectRatio: false, 
                 plugins: {
                     legend: { display: false },
                 },
@@ -57,7 +57,6 @@ const CurrencySale = () => {
                     },
                 },
                 onResize: (chart) => {
-                    // Перегенеруємо градієнт після зміни розмірів
                     const gradient = createGradient(chart.ctx, chart.chartArea);
                     chart.data.datasets[0].backgroundColor = gradient;
                     chart.update();
@@ -68,7 +67,6 @@ const CurrencySale = () => {
         const ctx = canvasRef.current.getContext('2d');
         chartRef.current = new Chart(ctx, chartConfig);
 
-        // Установка градієнта після рендеру
         const gradient = createGradient(ctx, chartRef.current.chartArea);
         chartRef.current.data.datasets[0].backgroundColor = gradient;
         chartRef.current.update();
@@ -82,7 +80,7 @@ const CurrencySale = () => {
 
     return (
         <div className={styles.currencyChartContainer}>
-            <canvas ref={canvasRef} className={styles.canvas}/>
+            <canvas ref={canvasRef} className={styles.canvas} />
         </div>
     );
 };

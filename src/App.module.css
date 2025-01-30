@@ -55,11 +55,11 @@ html, body {
   height: 100vh; /* Вирівнює секції по висоті екрана */
 }
 
-.leftStatisticsSection {
+/* .leftStatisticsSection {
   flex: 1; 
   background: linear-gradient(180deg, rgba(109, 84, 235, 0.6) 0%, rgba(101, 35, 146, 0.6) 100%);
   height: 100vh;
-}
+} */
 
 .rightSection {
   flex: 2; /* Права секція займає 2 частини доступного простору */
@@ -94,7 +94,26 @@ html, body {
   animation: fadeIn 1s ease-in-out;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    /* overflow: hidden; */
+}
+
+
+@media (max-width: 767px) { /* Телефони */
+  .container {
     flex-direction: column;
-    overflow: hidden;
+    height: auto;
+  }
+
+  .leftStatisticsSection, .rightSection {
+    width: 100%;
+    height: auto;
+  }
+
+  .rightSection {
+    padding: 15px;
+  }
+}
+
+.main {
+  width: 100%;
 }
