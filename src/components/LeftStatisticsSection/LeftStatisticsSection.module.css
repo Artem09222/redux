@@ -1,9 +1,9 @@
 .leftStatisticsSection {
     background: linear-gradient(-83.72deg, rgb(46, 23, 70) 3.204%, rgb(46, 34, 95) 99.979%);
     width: 480px;
-    min-height: 100vh;
     color: #ffffff;
     overflow: auto;
+    height: 100vh;
 }
 
 .leftStatisticsSectionWrapper {
