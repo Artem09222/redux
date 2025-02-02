@@ -10,5 +10,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
   },
-  base: '/FinalReactProjects/',
+  publicDir: false,
+  base: './',
 });
