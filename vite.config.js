@@ -6,5 +6,10 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
-  base: '/FinalReactProjects/'
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/App.test.js'], 
+  },
+  base: '/FinalReactProjects/' 
 });
