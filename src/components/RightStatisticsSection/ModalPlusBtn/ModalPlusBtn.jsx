@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux"; 
-import { addT } from "../../../store/reducer"; 
 import styles from "./ModalPlusBtn.module.css";
 import imgCalendar from "../../../assets/photo_2024-12-22_12-34-16.jpg";
 import categories from "../../../assets/categories";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { addT } from "../../redux/actions";
 
 const ModalPlus = ({ onClose }) => {
     const dispatch = useDispatch(); 

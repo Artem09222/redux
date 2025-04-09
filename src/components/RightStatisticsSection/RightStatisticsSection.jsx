@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteT } from '../../../store/reducer';
 import DeleteListBtn from './DeleteListButton/DeleteListButton';
 import PlusBtn from './PlusBtn/PlusBtn';
 import styles from './RightStatisticsSection.module.css';
+import { deleteT } from '../redux/actions';
 
 const RightStatisticsSection = () => {
     const transactions = useSelector((state) => state.transactions);

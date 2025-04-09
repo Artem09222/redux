@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { BrowserRouter as Router } from 'react-router-dom'; 
 import { ToastContainer } from 'react-toastify';
 import store from './store'; 
 import App from './App';
@@ -10,17 +9,15 @@ import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import reportWebVitals from './reportWebVitals';
 
-const browserHistory = createBrowserHistory();
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HistoryRouter history={browserHistory} basename='/FinalReactProjects/'>
+      <Router basename="/FinalReactProjects/"> 
         <ToastContainer />
         <App />
-      </HistoryRouter>
+      </Router>
     </Provider>
   </React.StrictMode>
 );
