@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux"; 
+import { addT } from "../../../store/reducer"; 
 import styles from "./ModalPlusBtn.module.css";
 import imgCalendar from "../../../assets/photo_2024-12-22_12-34-16.jpg";
 import categories from "../../../assets/categories";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const ModalPlus = ({ onClose, onAddTransaction }) => {
+const ModalPlus = ({ onClose }) => {
+    const dispatch = useDispatch(); 
     const [isIncome, setIsIncome] = useState(true);
     const [formData, setFormData] = useState({
         category: "",
@@ -19,10 +22,7 @@ const ModalPlus = ({ onClose, onAddTransaction }) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (
-                calendarRef.current &&
-                !calendarRef.current.contains(event.target)
-            ) {
+            if (calendarRef.current && !calendarRef.current.contains(event.target)) {
                 setShowCalendar(false);
             }
         };
@@ -69,45 +69,38 @@ const ModalPlus = ({ onClose, onAddTransaction }) => {
         }
 
         const newTransaction = {
-            ...formData,
+            id: Date.now(), 
+            date: formData.date.toLocaleDateString(),
             type: isIncome ? "Income" : "Expense",
+            category: formData.category,
+            comment: formData.comment,
+            sum: parseFloat(formData.amount).toFixed(2), 
+            sumClass: isIncome ? "sumUnique" : "sum",
         };
 
-        onAddTransaction(newTransaction);
+        console.log("Adding transaction:", newTransaction); 
+
+        dispatch(addT(newTransaction));
+
         setFormData({ category: "", amount: "0.00", date: new Date(), comment: "" });
         onClose();
     };
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
-            <div
-                className={styles.modalContent}
-                onClick={(e) => e.stopPropagation()}
-            >
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <button className={styles.closeButton} onClick={onClose}>
                     &times;
                 </button>
                 <h1 className={styles.h1}>Add Transaction</h1>
                 <div className={styles.toggleWrapper}>
-                    <span
-                        className={`${styles.label} ${
-                            isIncome ? styles.active : ""
-                        }`}
-                    >
+                    <span className={`${styles.label} ${isIncome ? styles.active : ""}`}>
                         Income
                     </span>
                     <div className={styles.toggleSwitch} onClick={toggle}>
-                        <div
-                            className={`${styles.circle} ${
-                                isIncome ? styles.income : styles.expense
-                            }`}
-                        ></div>
+                        <div className={`${styles.circle} ${isIncome ? styles.income : styles.expense}`}></div>
                     </div>
-                    <span
-                        className={`${styles.label} ${
-                            !isIncome ? styles.active : ""
-                        }`}
-                    >
+                    <span className={`${styles.label} ${!isIncome ? styles.active : ""}`}>
                         Expense
                     </span>
                 </div>
@@ -127,14 +120,8 @@ const ModalPlus = ({ onClose, onAddTransaction }) => {
                                 {categories.map((category, index) => (
                                     <div
                                         key={index}
-                                        className={`${styles.dropdownItem} ${
-                                            formData.category === category
-                                                ? styles.activeItem
-                                                : ""
-                                        }`}
-                                        onClick={() =>
-                                            handleCategorySelect(category)
-                                        }
+                                        className={`${styles.dropdownItem} ${formData.category === category ? styles.activeItem : ""}`}
+                                        onClick={() => handleCategorySelect(category)}
                                     >
                                         {category}
                                     </div>
@@ -142,10 +129,7 @@ const ModalPlus = ({ onClose, onAddTransaction }) => {
                             </div>
                         )}
                     </div>
-                    <div
-                        className={styles.inputCalendarWrapper}
-                        ref={calendarRef}
-                    >
+                    <div className={styles.inputCalendarWrapper} ref={calendarRef}>
                         <input
                             className={styles.inpNumberCalendar}
                             type="number"
@@ -195,6 +179,8 @@ const ModalPlus = ({ onClose, onAddTransaction }) => {
             </div>
         </div>
     );
+    
 };
+
 
 export default ModalPlus;

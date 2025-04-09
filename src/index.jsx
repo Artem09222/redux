@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { ToastContainer } from 'react-toastify';
-import store from './store'; // Убедись, что этот файл есть
+import store from './store'; 
 import App from './App';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
