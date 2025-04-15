@@ -1,10 +1,10 @@
+import { combineReducers } from "redux";
 import { ADD_TRANC, DELETE_TRANC } from "./actions";
 
 const initialState = {
     transactions: []
 }
-
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TRANC:
         return {...state, transactions: [...state.transactions, action.payload]}
@@ -14,3 +14,7 @@ export const reducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const rootReducer = combineReducers({
+    transactions: reducer
+})

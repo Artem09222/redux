@@ -5,7 +5,9 @@ import styles from './RightStatisticsSection.module.css';
 import { deleteT } from '../redux/actions';
 
 const RightStatisticsSection = () => {
-    const transactions = useSelector((state) => state.transactions);
+    const transactions = useSelector((state) => state.transactions.transactions);
+    console.log(transactions);
+    
     const dispatch = useDispatch();
 
     const deleteTransaction = (id) => {
