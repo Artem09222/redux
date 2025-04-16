@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router basename="/FinalReactProjects"> 
+      <Router basename="/redux"> 
         <ToastContainer />
         <App />
       </Router>
