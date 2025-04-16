@@ -1,9 +1,9 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import styles from './StatisticsRightSectionCircularRates.module.css'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Filler } from "chart.js";  // Додано Filler
+import styles from './StatisticsRightSectionCircularRates.module.css';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, Filler);  // Зареєстровано Filler
 
 const CircularChart = () => {
     const data = {
@@ -28,6 +28,7 @@ const CircularChart = () => {
                     "#FF7A20",
                 ],
                 borderWidth: 0,
+                fill: true, // Використання fill
             },
         ],
     };
