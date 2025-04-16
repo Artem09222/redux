@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HistoryRouter history={browserHistory} basename={FinalReactProjects}>
+      <HistoryRouter history={browserHistory} basename="/redux">
         <ToastContainer />
         <App />
       </HistoryRouter>
