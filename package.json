@@ -2,7 +2,7 @@
   "name": "my-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Artem09222.github.io/FinalReactProjects",
+  "homepage": "https://Artem09222.github.io/redux",
   "type": "module",
   "scripts": {
     "dev": "vite",
